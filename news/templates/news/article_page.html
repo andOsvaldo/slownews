@@ -1,0 +1,11 @@
+<!-- news/templates/news/article_page.html -->
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+  <h1>{{ page.title }}</h1>
+  <div>{{ page.body|richtext }}</div>
+  {% if page.audio_url %}
+    <p><a href="{{ page.audio_url }}" target="_blank">Listen to this article</a></p>
+  {% endif %}
+{% endblock %}
