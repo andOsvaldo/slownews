@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+  <div class="stream-page">
+    <h1>{{ page.title }}</h1>
+
+    <div class="stream-content">
+      {% for block in page.body %}
+        {% if block.block_type == "paragraph" %}
+          <div class="paragraph">{{ block.value|richtext }}</div>
+        {% elif block.block_type == "image" %}
+          <div class="image">
+            {% image block.value original %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    {% if page.audio_url %}
+      <div class="audio-player">
+        <h3>🎧 Listen</h3>
+        <audio controls>
+          <source src="{{ page.audio_url }}" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}
