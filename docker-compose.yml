@@ -9,3 +9,5 @@ services:
       - PORT=8000
     volumes:
       - .:/app
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
